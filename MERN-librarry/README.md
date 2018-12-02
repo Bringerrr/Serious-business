@@ -1,6 +1,6 @@
-# MERN Shopping List
+# MERN Film Library
 
-> Shopping list app built with the MERN stack along with Redux for state management, Reactstrap and react-transition-group.
+> Film Library app built with the MERN stack along with Redux for state management, Reactstrap and react-transition-group.
 
 ## Quick Start
 
@@ -31,8 +31,8 @@ There is a Heroku post build script so that you do not have to compile your Reac
 
 ### Author
 
-Brad Traversy
-[Traversy Media](http://www.traversymedia.com)
+Kruchkov Evgeniy
+
 
 ### Version
 
