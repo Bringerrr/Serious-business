@@ -1,0 +1,52 @@
+/* .Main-Menu{
+    width: 100%;
+    position: fixed;
+    padding: 20px 0;
+    background-color: red;
+    display: flex;
+} */
+
+.Header{
+    display: flex;
+    justify-content: flex-end;
+    font-size: 1.3rem;
+    width: 100%;
+    position: fixed;
+    z-index: 999;
+    padding: 20px 0;
+    color:white;
+    /* background-color: black; */
+    background-color:  rgb(47, 47, 47);
+    background-size: 15%;
+    left:0;
+}
+
+.Header .MainMenu_Item{
+    margin: 0 14px;
+}
+
+.Header .MainMenu_Item {
+    color: inherit;
+    text-decoration: none;
+}
+
+.PageLink {
+    color: black;
+    margin-right: 20px;
+}
+
+.ActivePageLink {
+    font-weight: bold;
+}
+
+.opacity{
+    opacity: 0;
+    position: relative;
+    z-index: -999;
+}
+
+
+.Header > .MainMenu_Item{
+    font-family: "Cinzel";
+    font-weight: 300;
+}

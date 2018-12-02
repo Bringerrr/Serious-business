@@ -1,0 +1,121 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.FilmProfile-Container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    overflow: hidden;
+    background-color: white;
+}
+
+.FilmProfile-Container > .FilmProfile{
+    margin-top: 40px;
+    width: 80%;
+    display: flex;
+    max-width: 1000px;
+    flex-wrap: wrap;
+    /* background-color: rgb(172, 169, 169); */
+    box-shadow: 0px 0px 10px 10px grey;
+    margin-bottom: 80px;
+}
+
+.FilmProfile_Title > h2{
+    padding: 20px;
+}
+
+.TopContainer{
+    width: 100%;
+    display: flex;
+}
+
+.TopContainer > .FilmProfile_Info {
+    align-self: flex-end;
+}
+
+.TopContainer > .FilmProfile_Info > .FilmProfile_Title{
+    width: 100%;
+    padding-bottom: 20px;
+    display: flex;
+}
+
+.TopContainer > .FilmProfile_Picture{
+    min-width: 300px;
+    width: 300px;
+    align-self: flex-start;
+    margin: 0 20px 0 20px;
+}
+
+.FilmProfile_Picture > .Picture_Img{
+    width: 100%;
+}
+
+.FilmProfile_Info{
+    min-width: 200px;
+    align-self: flex-end 
+}
+
+.FilmProfile-Info_Item {
+    padding-left: 20px;
+    display: flex;
+    right: 0;
+    flex-direction: column-reverse
+}
+
+.FilmProfile-Info_Item > .Item_Title{
+    width: 100%;
+    text-align: left;
+    align-self: flex-start;
+    background-color: rgb(47, 47, 47);
+    border-top-left-radius: 10px;
+    color: azure;
+    padding: 6px 6px 6px 20px;
+    margin: 0 0 0 0;
+    font-weight: 300;
+    margin-left: 10px;
+}
+.FilmProfile-Info_Item > .Item_Info{
+    font-size: 1.3em;
+    padding: 4px 14px 4px 4px;
+    width: 100%;
+    align-self: flex-start;
+    text-align: right;
+}
+
+.FilmProfile_Rating{
+    padding: 50px 10px;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    flex-direction: row
+}
+
+.FilmProfile_Rating > .Rating_Container{
+    display: flex;
+    flex-direction: column;
+}
+
+.FilmProfile_Rating > .Rating_Container > .Item_Title{
+    font-size: 1.4rem;
+    text-align: center;
+    color: white;
+    padding: 10px;
+    background-color: black;
+}
+
+.FilmProfile_Rating > .Rating_Container > .Item_Info{
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.FilmProfile_Plot{
+    border-top: 4px solid #000;
+    width: 100%;
+    font-size: 1.5em;
+    padding: 40px 25px;
+    letter-spacing: 0.01em
+}
+
