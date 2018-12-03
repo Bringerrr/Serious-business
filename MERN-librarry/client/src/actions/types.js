@@ -6,5 +6,6 @@ export const ITEMS_LOADING = 'ITEMS_LOADING';
 export const GET_FILM = 'GET_FILM';
 export const GET_CURRENT_FILM = 'GET_CURRENT_FILM';
 
-export const GET_USER_EXIST = 'GET_USER_EXIST';
+export const USER_SAVE_FILM = 'USER_SAVE_FILM'
+export const USER_AUTH = 'USER_AUTH'
 export const USER_REG = 'USER_REG';

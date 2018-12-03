@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+
 .FilmProfile-Container{
     display: flex;
     width: 100%;
@@ -18,7 +19,6 @@
     display: flex;
     max-width: 1000px;
     flex-wrap: wrap;
-    /* background-color: rgb(172, 169, 169); */
     box-shadow: 0px 0px 10px 10px grey;
     margin-bottom: 80px;
 }
@@ -62,7 +62,7 @@
     padding-left: 20px;
     display: flex;
     right: 0;
-    flex-direction: column-reverse
+    flex-direction: column-reverse;
 }
 
 .FilmProfile-Info_Item > .Item_Title{
@@ -73,7 +73,7 @@
     border-top-left-radius: 10px;
     color: azure;
     padding: 6px 6px 6px 20px;
-    margin: 0 0 0 0;
+    margin-right: 10px;
     font-weight: 300;
     margin-left: 10px;
 }
@@ -119,3 +119,64 @@
     letter-spacing: 0.01em
 }
 
+
+@media only screen and (max-width: 800px) {
+
+    html{
+        font-size: 12px
+    }
+
+    .TopContainer {
+        flex-direction: column;  
+    }
+
+    .TopContainer > .FilmProfile_Info {
+        width: 100%;
+    }
+    
+    .TopContainer > .FilmProfile_Info > .FilmProfile_Title{
+        width: 100%;
+        padding-bottom: 20px;
+        display: flex;
+    }
+    
+    .TopContainer > .FilmProfile_Picture{
+        width: 50%;
+        align-self: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 25px;
+    }
+
+    .FilmProfile-Info_Item {
+        flex-direction: row-reverse;
+    }
+
+    .FilmProfile-Info_Item > .Item_Title{
+        font-size: 1.15em;
+        text-align: right;
+        width: 50%;
+        border-bottom: 2px solid white;
+        align-self: stretch;
+    }
+
+    .FilmProfile-Info_Item > .Item_Info{
+        font-size: 1.15em;
+        text-align: left;
+        width: 50%;
+        border-bottom: 2px solid rgb(47, 47, 47);
+        margin-right: 20px;
+    }
+
+    .FilmProfile_Rating{
+        margin-top: 30px;
+        border-top: 4px solid black;
+        flex-direction: column;
+    }
+
+    .FilmProfile_Rating > .Rating_Container {
+        margin-bottom: 8px;
+    }
+
+  }

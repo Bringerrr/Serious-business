@@ -9,39 +9,51 @@ import {
 } from 'reactstrap';
 import {connect} from 'react-redux';
 
+import {getUserData} from '../actions/userActions';
+
 class SignIn extends Component {
     state = {
         modal: false,
-        name: ''
+        email: '',
+        password: ''
+    };
+
+    auth = (email, password) =>{
+        this.props.getUserData(email,password)
+    } 
+
+    onChange = e => {
+        this.setState({ [e.target.name]: e.target.value });
     };
 
     onSubmit = e => {
         e.preventDefault();
 
-        const newItem = {
-            name: this.state.name
-        };
+        const {email,password} = this.state
+        this.auth(email,password);
 
-        // Add item via addItem action
-        this
-            .props
-            .addItem(newItem);
-
-        // Close modal
-        this.toggle();
+        setTimeout( () => { 
+            if(!this.props.user.userInfo.errors){   // if threre are no error during registrartion
+                localStorage.setItem(               // save our data in LocalStorage
+                    'MERN Library',
+                    JSON.stringify({email:email,password:password})
+                )
+            }
+            this.setState({loading:false})
+        }, 1500 );
     };
 
     render() {
         return (
-            <Form inline>
+            <Form inline onSubmit={this.onSubmit}>
                 <FormGroup>
                     <Label for="exampleEmail" hidden>Email</Label>
-                    <Input type="email" name="email" id="exampleEmail" placeholder="Email" />
+                    <Input onChange={this.onChange} type="email" name="email" id="exampleEmail" placeholder="Email" />
                 </FormGroup>
                 {' '}
                 <FormGroup>
                     <Label for="examplePassword" hidden>Password</Label>
-                    <Input type="password" name="password" id="examplePassword" placeholder="Password" />
+                    <Input onChange={this.onChange} type="password" name="password" id="examplePassword" placeholder="Password" />
                 </FormGroup>
                 {' '}
                 <Button>Submit</Button>
@@ -51,5 +63,13 @@ class SignIn extends Component {
 }
 
 
-
-export default SignIn;
+const mapStateToProps = state => ({
+    item: state.item,
+    imdb: state.imdb,
+    user: state.user
+  });
+  
+  export default connect(
+    mapStateToProps,
+    { getUserData }
+  )(SignIn);

@@ -7,8 +7,6 @@ import MainPage from './pages/MainPage';
 
 import Header from './components/Header';
 
-
-
 import { Provider } from 'react-redux';
 
 import thunk from 'redux-thunk';
@@ -30,11 +28,8 @@ class App extends Component {
       <BrowserRouter>
       <Provider store={store}>
         <div className="App">
-
             <div>
-
               <Header/>
-
               <Switch>
                 <Route path="/" exact component={MainPage}/>
                 <Route path="/userLib" component={UserLib}/>

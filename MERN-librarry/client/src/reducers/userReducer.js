@@ -1,22 +1,32 @@
 import {
-    GET_USER_EXIST,
+    USER_AUTH,
     USER_REG,
+    USER_SAVE_FILM,
     ITEMS_LOADING,
   } from '../actions/types';
   
   const initialState = {
     checkUser:'',
     userInfo:[],
+    userData:[],
+    saveFilm:[],
     loading: false
   };
   
   export default function(state = initialState, action) {
     switch (action.type) {
-        case GET_USER_EXIST:
+        case USER_SAVE_FILM:
         console.log(action.payload)
         return {
             ...state,
-            checkUser: action.payload,
+            saveFilm: action.payload,
+            loading: false
+        };
+        case USER_AUTH:
+        console.log(action.payload)
+        return {
+            ...state,
+            userData: action.payload,
             loading: false
         };
         case USER_REG:

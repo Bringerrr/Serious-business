@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 class ShoppingList extends Component {
   componentDidMount() {
-    this.props.getItems();
+    this.props.getItems(); // СЕКРЕТ КРУТОГО РЕНДЕРЕГА !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   }
 
   onDeleteClick = id => {
@@ -16,11 +16,12 @@ class ShoppingList extends Component {
 
   render() {
     const { items } = this.props.item;
+    const { library } = this.props.user.userData.film_storage
     return (
       <Container>
         <ListGroup>
           <TransitionGroup className="shopping-list">
-            {items.map(({ _id, name }) => (
+            {/* {items.map(({ _id, name }) => (
               <CSSTransition key={_id} timeout={500} classNames="fade">
                 <ListGroupItem>
                   <Button
@@ -34,7 +35,23 @@ class ShoppingList extends Component {
                   {name}
                 </ListGroupItem>
               </CSSTransition>
+            ))} */}
+            {library.map((elem,key) => (
+              <CSSTransition key={key} timeout={500} classNames="fade">
+                <ListGroupItem>
+                  <Button
+                    className="remove-btn"
+                    color="danger"
+                    size="sm"
+                    // onClick={this.onDeleteClick.bind(this, _id)}
+                  >
+                    &times;
+                  </Button>
+                  {elem.Title}
+                </ListGroupItem>
+              </CSSTransition>
             ))}
+            
           </TransitionGroup>
         </ListGroup>
       </Container>
@@ -48,7 +65,8 @@ ShoppingList.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  item: state.item
+  item: state.item,
+  user: state.user
 });
 
 export default connect(

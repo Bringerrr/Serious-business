@@ -14,7 +14,7 @@ import {
   PaginationLink
 } from 'reactstrap';
 
-import { NavLink,Link,Route } from 'react-router-dom';
+import { NavLink,Route } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { addItem } from '../actions/itemActions';
@@ -54,7 +54,7 @@ class FilmSearchEngine extends Component {
     return allTypes.map((elem,key)=>{
       let array = []
 
-      if (elem == "") array.push(<option key={key} value="">All</option>)
+      if (elem === "") array.push(<option key={key} value="">All</option>)
       else array.push(<option key={key} >{elem}</option>)
 
       return array
@@ -64,7 +64,7 @@ class FilmSearchEngine extends Component {
   onCLickPagination = (event) => {
     event.preventDefault();
 
-    var pressedPage = parseInt(event.currentTarget.innerHTML)
+    var pressedPage = parseInt(event.currentTarget.innerHTML,10)
     this.setState({currentPage:pressedPage})
 
     this.props.getFilm(
@@ -85,15 +85,9 @@ class FilmSearchEngine extends Component {
   onClickGetInfo = e => {
     e.preventDefault();
 
-    console.log(e.currentTarget.id);
-    console.log(e.currentTarget.getAttribute("imgsrc"));
-    console.log(this.props.imdb.items.Search)
-
     this.setState({modalImg:e.currentTarget.getAttribute("imgsrc")})
 
     this.getCurrentFilm(e.currentTarget.id);
-
-    console.log(this.props.imdb.currentFilm)
 
     this.toggle();
   }
@@ -137,7 +131,7 @@ class FilmSearchEngine extends Component {
         </PaginationItem>
       )
     }
-    let pagItemDots      =        // Three dots element
+    let pagItemDots=          // Three dots element
       <PaginationItem >
         <PaginationLink >
           {'...'}
@@ -237,8 +231,6 @@ class FilmSearchEngine extends Component {
   }
 
   render() {
-    console.log(this.state)
-    console.log(this.props)
     return (
       <div>
         <Form onSubmit={this.onSubmit}>
@@ -300,17 +292,21 @@ class FilmSearchEngine extends Component {
         }
 
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>Close</ModalHeader>
-          <ModalHeader toggle={this.toggle}>Add</ModalHeader>
+          <ModalHeader toggle={this.toggle}>{this.props.imdb.currentFilm.Title}</ModalHeader>
           <ModalBody>
-              {(this.state.modalImg != "")
-              ?<img src={this.state.modalImg} alt=""/>
+              {(this.state.modalImg !== "")
+              ?<img style={{float:'left'}} src={this.state.modalImg} alt=""/>
               :<img src="https://cdn.browshot.com/static/images/not-found.png" alt=""/>}
-              
-              <NavLink to={"/films/"+this.props.imdb.currentFilm.imdbID}>Подробнее</NavLink>
-              <Link to={{ pathname: `/films/${this.props.imdb.currentFilm.imdbID}`}}>Player #7</Link>
-              <a href={'/films/'+this.props.imdb.currentFilm.imdbID}>Подробнее</a>
-              {/* <button onClick={()=>{this.props.history.replace('/filmdb/121243')}}>Подробнее</button> */}
+
+              <span style={{float:'left'}}>{this.props.imdb.currentFilm.Plot}</span>
+              <NavLink to={"/films/"+this.props.imdb.currentFilm.imdbID}>
+                <Button
+                  color="danger"
+                  style={{ marginBottom: '2rem' }}
+                  >
+                  Подробнее
+                </Button>
+              </NavLink>
               
           </ModalBody>
         </Modal>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, FormFeedback, FormGroup, Label, Input, FormText } from 'reactstrap';
 import {connect} from 'react-redux';
 
-import {checkUserExistence, userReg} from '../actions/userActions';
+import {userReg} from '../actions/userActions';
 
 class SignUp extends Component {
     state = {
@@ -13,53 +13,49 @@ class SignUp extends Component {
         email: '',
         password: '',
         emailValid: true,
+        loading: false,
     };
 
     userReg = (userInfo) =>{
 
-        const picked = 
+        const picked =  // creat a new obj with keys we need for registration
         (   ({ first_name, last_name, email, password }) =>
             ({ first_name, last_name, email, password }) 
         )   (this.state);
 
-        this.props.userReg(picked)
+        this.props.userReg(picked) // registration
     }
 
     onSubmit = e => {
         e.preventDefault();
-        this.props.checkUserExistence(
-            this.state.email
-        );
+        const {email,password} = this.state
+
+        this.setState({loading:true})
+        this.userReg();
+
         setTimeout( () => { 
             this.emailValidation(); 
-            console.log("Прошло 1.5 секунды")
+            if(!this.props.user.userInfo.errors){   // if threre are no error during registrartion
+                                                   // save our data in LocalStorage
+            localStorage.setItem('MERN Library',JSON.stringify({email:email,password:password}))
+             }
+            this.setState({loading:false})
         }, 1500 );
-        setTimeout( () => { 
-            if(!this.props.userInfo) this.userReg();
-            else console.log("Уже такой есть")
-        }, 2000 );
     };
 
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value });
       };
 
-    checkUserExistence = email => {
-        this.props.checkUserExistence(email);
-    }
-
     emailValidation = () =>{
-        this.setState({emailValid:this.props.user.checkUser})
+        this.props.user.userInfo.errors     //if it exists it means 
+        ?this.setState({emailValid:false})  //that fetch req had an error
+        :this.setState({emailValid:true})
     }
 
     render() {
         return (
             <Form onSubmit={this.onSubmit}>
-
-                {this.props.user.checkUser
-                ?<h4>This email already exist. Please use another one</h4>
-                :null}
-
                 <FormGroup>
                     <Label for="firstName">First Name</Label>
                     <Input onChange={this.onChange} type="text" name="firstName" placeholder="First Name" />
@@ -71,18 +67,20 @@ class SignUp extends Component {
                 <FormGroup>
                     <Label for="exampleEmail">Email</Label>
                     {this.state.emailValid
-                        ?<div><Input onChange={this.onChange} type="email" name="email" id="exampleEmail" placeholder="with a placeholder" /></div>
-                        :<div><Input invalid onChange={this.onChange} type="email" name="email" id="exampleEmail" placeholder="with a placeholder" /> 
-                        <FormFeedback tooltip>Oh noes! that name is already taken</FormFeedback></div>
+                        ?<div><Input required onChange={this.onChange} type="email" name="email" id="exampleEmail" placeholder="with a placeholder" /></div>
+                        :<div><Input required invalid onChange={this.onChange} type="email" name="email" id="exampleEmail" placeholder="with a placeholder" /> 
+                        <FormFeedback tooltip>User with such email already exists</FormFeedback></div>
                     }
-
                 </FormGroup>
                 <FormGroup>
                     <Label for="examplePassword">Password</Label>
-                    <Input onChange={this.onChange} type="password" name="password" id="examplePassword" placeholder="password placeholder" />
+                    <Input required onChange={this.onChange} type="password" name="password" id="examplePassword" placeholder="password placeholder" />
                 </FormGroup>
 
-                <Button>Submit</Button>
+                {(this.state.loading) 
+                    ?<img width="60" src="https://loading.io/spinners/coolors/lg.palette-rotating-ring-loader.gif" alt=""/>
+                    :<Button>Submit</Button>
+                }
                 <br/>
                 <br/>
 
@@ -100,5 +98,5 @@ const mapStateToProps = state => ({
   
   export default connect(
     mapStateToProps,
-    { checkUserExistence,userReg }
+    { userReg }
   )(SignUp);

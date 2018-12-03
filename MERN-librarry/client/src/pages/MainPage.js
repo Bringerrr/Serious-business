@@ -11,6 +11,7 @@ import { Container, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'r
 import './MainPage.css'
 
 
+
 class MainPage extends React.Component {
 
   constructor(props) {
@@ -20,8 +21,20 @@ class MainPage extends React.Component {
   }
 
   state = {
-    modal: false
+    modal: false,
+    isLoading: true
   };
+
+  componentWillMount() {
+    localStorage.getItem('password') && this.setState({
+      password: localStorage.getItem('password'),
+      isLoading: false
+    })
+  }
+
+  componentWillUpdate(nextProps,nextState){
+    localStorage.setItem('password','12145')
+  }
 
   toggle() {
     this.setState({
@@ -30,7 +43,7 @@ class MainPage extends React.Component {
   }
 
     render() {
-  
+      // console.log(this.state)
       return (
         <Container>
             <SignUp/>
