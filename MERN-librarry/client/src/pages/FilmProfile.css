@@ -10,6 +10,7 @@
     justify-content: center;
     overflow: hidden;
     background-color: white;
+    flex-wrap: wrap;
 }
 
 .FilmProfile-Container > .FilmProfile{
@@ -158,6 +159,12 @@
 }
 .FilmProfile_Review > .Review_Form{
     margin:  10px 0 50px 0;
+}
+
+.FilmProfile_UserReview{
+    width: 80%;
+    font-size: 1.6em;
+    max-width: 1000px;
 }
 
 

@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import itemReducer from './itemReducer';
+import activityReducer from './activityReducer';
 import imdbReducer from './imdbReducer';
 import userReducer from './userReducer';
 
 export default combineReducers({
   imdb: imdbReducer,
-  item: itemReducer,
+  activity: activityReducer,
   user: userReducer
 });

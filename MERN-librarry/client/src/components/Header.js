@@ -10,7 +10,7 @@ import DropdownUser from './DropdownUser'
 
 import { getUserData, userSignOut,userDashboard } from '../actions/userActions'
 
-class Header extends React.PureComponent {
+class Header extends React.Component {
 
   state = {
     email:"",

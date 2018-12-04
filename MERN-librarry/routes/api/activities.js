@@ -5,7 +5,7 @@ const router = express.Router();
 const Activity = require('../../models/Activity');
 
 // @route   GET api/activities
-// @desc    Get All Activitys
+// @desc    Get All reviews
 // @access  Public
 router.get('/', (req, res) => {
   Activity.find()
@@ -14,23 +14,21 @@ router.get('/', (req, res) => {
 });
 
 // @route   POST api/activities
-// @desc    Create An Activity
+// @desc    POST review
 // @access  Public
 router.post('/', (req, res) => {
-  const {id, user, rating, review} = req.body
+  console.log(req.body)
   const newActivity = new Activity({
-    imdbID: req.body,
-    userRating: req.body.rating,
-    userReview: req.body.review
+    imdbID: req.body.id,
+    userReview: [{review:req.body.review,user:req.body.user}]
   });
-
   newActivity.save().then(activity => res.json(activity));
 });
 
 // @route   DELETE api/activities/:id
-// @desc    Delete A Activity
+// @desc    Delete A review
 // @access  Public
-router.delete('/:id', (req, res) => {
+router.delete('/reviews:id', (req, res) => {
   Activity.findById(req.params.id)
     .then(activity => activity.remove().then(() => res.json({ success: true })))
     .catch(err => res.status(404).json({ success: false }));

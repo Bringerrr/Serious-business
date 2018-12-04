@@ -12,3 +12,6 @@ export const USER_AUTH = 'USER_AUTH'
 export const USER_REG = 'USER_REG';
 export const USER_SIGN_OUT = 'USER_SIGN_OUT';
 export const USER_DASHBOARD = "USER_DASHBOARD";
+
+export const POST_REVIEW = "POST_REVIEW"
+export const GET_REVIEW = "GET_REVIEW"

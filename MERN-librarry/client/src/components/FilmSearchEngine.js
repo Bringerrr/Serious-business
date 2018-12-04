@@ -64,11 +64,13 @@ class FilmSearchEngine extends Component {
   onCLickPagination = (event) => {
     event.preventDefault();
 
+
     var pressedPage = parseInt(event.currentTarget.innerHTML,10)
     this.setState({currentPage:pressedPage})
 
     this.props.getFilm(
         this.state.name, 
+        this.state.type,
         this.state.year,
         pressedPage
     );
@@ -231,7 +233,7 @@ class FilmSearchEngine extends Component {
   }
 
   render() {
-    console.log(this.props.imdb)
+    console.log(this.props)
     return (
       <div>
         <Form onSubmit={this.onSubmit}>

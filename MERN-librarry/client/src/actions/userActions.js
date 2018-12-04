@@ -9,9 +9,8 @@ import {
   ITEMS_LOADING 
 } from './types';
 
-// sign in a user by email and password then get user's
+// sign in a user by email and password then get user's data
 export const getUserData = (email,password) => dispatch => {
-  dispatch(userDashboard());
   axios.post(`/api/users/auth/${email}/${password}`).then(res =>
     dispatch({
       type: USER_AUTH,
@@ -59,24 +58,23 @@ export const userReg = userInfo => dispatch => {
   );
 };
 
-// check login session
-export const userDashboard = () => dispatch => {
-  dispatch(setItemsLoading());
-  axios.get('/api/users/dashboard').then(res =>
-    dispatch({
-      type: USER_DASHBOARD,
-      payload: res.data
-    })
-  );
-};
-
-
 // sign out
 export const userSignOut = () => dispatch => {
   dispatch(setItemsLoading());
   axios.get('/api/users/signout').then(res =>
     dispatch({
       type: USER_SIGN_OUT,
+      payload: res.data
+    })
+  );
+};
+
+// check login session
+export const userDashboard = () => dispatch => {
+  dispatch(setItemsLoading());
+  axios.get('/api/users/dashboard').then(res =>
+    dispatch({
+      type: USER_DASHBOARD,
       payload: res.data
     })
   );

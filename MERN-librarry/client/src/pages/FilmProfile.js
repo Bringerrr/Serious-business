@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 import { getCurrentFilm } from '../actions/imdbActions';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { saveFilm } from '../actions/userActions';
+import { getReview, postReview } from '../actions/activityActions';
 
 import './FilmProfile.css'
 
@@ -11,17 +12,16 @@ class FilmProfile extends React.PureComponent {
 
     state = {
         review: "",
-
+        filmId: "",
+        posted: false,
+        ready: false
     }
 
     componentWillMount(){
-        const {match} = this.props
-        console.log(match.params._id);
+        this.props.getReview()          // Getting all reviews
+        const {match} = this.props      // Get current film's id from router's path
         this.props.getCurrentFilm(match.params._id);
-    }
-
-    getCurrentFilm = id =>{
-        this.props.getCurrentFilm(id);
+        this.setState({filmId:match.params._id})
     }
 
     onChange = e => {
@@ -30,7 +30,12 @@ class FilmProfile extends React.PureComponent {
 
     postReview = e =>{
         e.preventDefault();
-
+        this.props.postReview({
+            id:      this.state.filmId,
+            review:  this.state.review, 
+            user:    this.props.user.userData.email
+        }) 
+        this.setState({posted:true})
     }
 
     saveFilm = () => {
@@ -53,7 +58,8 @@ class FilmProfile extends React.PureComponent {
     }
 
     render() {
-
+        const { reviews } = this.props.activity
+        console.log(reviews)
         const film = this.props.imdb.currentFilm;
         const pureItems = ["Released","Genre","BoxOffice","Rated",
         "Runtime", "Director","Country","Production","Writer","Actors"];
@@ -95,8 +101,8 @@ class FilmProfile extends React.PureComponent {
                                 <div className="FilmProfile_Buttons">
                                     <Button onClick={this.saveFilm} size="lg" color="secondary">Add</Button>
                                     <Button size="lg" color="success"> Added</Button>
-                                    <Button size="lg" color="info"><i class="arrow"></i>to Search</Button>
-                                    <Button size="lg" color="info"> <i class="arrow"></i>to Library</Button>
+                                    <Button size="lg" color="info"><i className="arrow"></i>to Search</Button>
+                                    <Button size="lg" color="info"> <i className="arrow"></i>to Library</Button>
                                 </div>
                             </div>
                             <div className="FilmProfile_Info">
@@ -123,8 +129,14 @@ class FilmProfile extends React.PureComponent {
                             </Form>
                         </div> 
                         :null}
-
+                    
                     </div>
+                        {reviews.length > 0
+                        ?reviews.map( (e,key) => {
+                            return <div className="FilmProfile_UserReview wrapper" key={key}>{e.userReview.review}!!!!!!!!</div>
+                        })
+                        :null
+                        }
                 </div>}
             </div>
         );
@@ -134,10 +146,11 @@ class FilmProfile extends React.PureComponent {
 
 const mapStateToProps = state => ({
     imdb: state.imdb,
-    user: state.user
+    user: state.user,
+    activity: state.activity,
   });
   
   export default connect(
     mapStateToProps,
-    { saveFilm,getCurrentFilm }
+    { saveFilm,getCurrentFilm,getReview, postReview }
   )(FilmProfile);

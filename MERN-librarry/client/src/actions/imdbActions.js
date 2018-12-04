@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { GET_FILM, ITEMS_LOADING, GET_CURRENT_FILM } from './types';
 
-export const getFilm = (title, year, type) => dispatch => {
+export const getFilm = (title, year, type, page) => dispatch => {
   dispatch(setItemsLoading());
-  axios.get(`http://www.omdbapi.com/?s=${title}&type=${type}&y=${year}&apikey=4fd43156`)
+  axios.get(`http://www.omdbapi.com/?s=${title}&type=${type}&y=${year}&page=${page}&apikey=4fd43156`)
   .then(res =>
     dispatch({
       type: GET_FILM,

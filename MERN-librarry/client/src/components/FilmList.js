@@ -28,7 +28,7 @@ class FilmList extends React.PureComponent {
       <Container>
         <div className="FilmCard">
           {userData.length === 0 
-            ?null
+            ?<div>You can add films to your collection</div>
             :userData.film_storage.map((elem,key) => {
     
                 return (
