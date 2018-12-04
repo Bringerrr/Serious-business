@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { 
-    Col, 
     Form, 
     FormGroup, 
     Label,
@@ -9,7 +8,7 @@ import {
 } from 'reactstrap';
 import {connect} from 'react-redux';
 
-import {getUserData} from '../actions/userActions';
+import {getUserData, userDashboard} from '../actions/userActions';
 
 class SignIn extends Component {
     state = {
@@ -19,7 +18,7 @@ class SignIn extends Component {
     };
 
     auth = (email, password) =>{
-        this.props.getUserData(email,password)
+        this.props.getUserData(email,password);
     } 
 
     onChange = e => {
@@ -28,19 +27,12 @@ class SignIn extends Component {
 
     onSubmit = e => {
         e.preventDefault();
-
+        // this.props.userDashboard()
         const {email,password} = this.state
-        this.auth(email,password);
+        this.auth(email,password)
+        this.setState({loading:false})
+        this.props.toggle();
 
-        setTimeout( () => { 
-            if(!this.props.user.userInfo.errors){   // if threre are no error during registrartion
-                localStorage.setItem(               // save our data in LocalStorage
-                    'MERN Library',
-                    JSON.stringify({email:email,password:password})
-                )
-            }
-            this.setState({loading:false})
-        }, 1500 );
     };
 
     render() {
@@ -50,12 +42,10 @@ class SignIn extends Component {
                     <Label for="exampleEmail" hidden>Email</Label>
                     <Input onChange={this.onChange} type="email" name="email" id="exampleEmail" placeholder="Email" />
                 </FormGroup>
-                {' '}
                 <FormGroup>
                     <Label for="examplePassword" hidden>Password</Label>
                     <Input onChange={this.onChange} type="password" name="password" id="examplePassword" placeholder="Password" />
                 </FormGroup>
-                {' '}
                 <Button>Submit</Button>
             </Form>
         );
@@ -64,12 +54,11 @@ class SignIn extends Component {
 
 
 const mapStateToProps = state => ({
-    item: state.item,
     imdb: state.imdb,
     user: state.user
   });
   
   export default connect(
     mapStateToProps,
-    { getUserData }
+    { getUserData, userDashboard }
   )(SignIn);

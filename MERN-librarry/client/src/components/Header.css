@@ -1,13 +1,13 @@
 .Header{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     font-size: 1.3rem;
     width: 100%;
     position: fixed;
     z-index: 999;
     padding: 20px 0;
     color:white;
-    background-color:  rgb(47, 47, 47);
+    background-color:rgb(47, 47, 47);
     background-size: 15%;
     left:0;
 }
@@ -18,8 +18,8 @@
     text-decoration: none;
 }
 
-.__User{
-    color:red
+.MainMenu_Item_Buttons{
+    display: flex;
 }
 
 .PageLink {

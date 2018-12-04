@@ -1,0 +1,106 @@
+.FilmCard{
+   display: flex;
+   width: 100%;
+   justify-content: space-around;
+   flex-wrap: wrap;
+}
+
+.FilmCard_Item{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 22%;
+    justify-content: space-between;
+    box-shadow: 0px 0px 17px 10px black;
+    border-radius: 5px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.FilmCard_Item > .FilmCard_Poster{
+    overflow: hidden;
+}
+
+.FilmCard_Item > .FilmCard_Poster > .FilmCard_Info{
+    align-self: center
+}
+.FilmCard_Item img {
+    transition: all 0.2s;
+    width: 100%;
+}
+
+.FilmCard_Item:hover img {
+    transform: scale(1.4)
+}
+
+
+.FilmCard_Item h4{
+    font-size: 1.0rem;
+}
+
+.FilmCard_Item h4, span{
+    text-align: center;
+}
+
+.FilmCard_Item > .FilmCard_Buttons{
+    padding-top: 10px;
+}
+
+.FilmCard_Item > .FilmCard_Buttons:before{
+    content: "";
+    display: block;
+    width: 90%;
+    left: 5%;
+    position: relative;
+    height: 14px;
+    border-radius: 32px 32px 0px 0px;
+    background-color: rgba(175, 175, 175, 0.972);
+}
+
+.FilmCard_Item > .FilmCard_Buttons Button{
+    width: 50%;
+    border: none;
+    padding: 7px;
+    transition: linear 0.2s;
+    background-color: rgb(47, 47, 47);
+    text-transform: uppercase;
+}
+
+Button.del{
+    border-bottom-right-radius: 25px;
+}
+
+Button.go{
+    border-bottom-left-radius: 25px;
+}
+
+.FilmCard_Buttons Button:hover{
+    transform: scale(0.9)
+}
+
+.FilmCard_Buttons > NavLink{
+    padding: 0;
+    margin: 0;
+    font-size: 0;
+}
+
+@media only screen and (max-width: 1280px) {
+    .FilmCard_Item{
+
+        flex: 0 0 29%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .FilmCard_Item{
+
+        flex: 0 0 46%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .FilmCard_Item{
+
+        flex: 0 0 90%;
+    }
+}

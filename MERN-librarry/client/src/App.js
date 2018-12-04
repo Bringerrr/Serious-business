@@ -4,6 +4,8 @@ import SearchFilm from './pages/SearchFilm';
 import UserLib from './pages/UserLib';
 import FilmProfile from './pages/FilmProfile'
 import MainPage from './pages/MainPage';
+import SignUp from './pages/SignUp';
+
 
 import Header from './components/Header';
 
@@ -33,6 +35,7 @@ class App extends Component {
               <Switch>
                 <Route path="/" exact component={MainPage}/>
                 <Route path="/userLib" component={UserLib}/>
+                <Route path="/signup" component={SignUp}/>
                 <Route path="/films" exact component={SearchFilm}/>
                 <Route path="/films/:_id" component={FilmProfile}/>
               </Switch>

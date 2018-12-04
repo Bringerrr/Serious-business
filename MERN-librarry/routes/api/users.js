@@ -39,58 +39,159 @@ router.delete('/:id', (req, res) => {
     .catch(err => res.status(404).json({ success: false }));
 });
 
-// @route   AUTH api/users/auth/:email/:password
-// @desc    user's auth
-// @access  Public
-router.post('/auth/:email/:password', (req, res) => {
-  User.findOne({email:req.params.email,password:req.params.password})
-  .then(user => res.json(user))
-  .catch(err => res.json(err));
-    }
-);
-
-// @route   PATCH api/users/:id
-// @desc    update user's info
-// @access  Public
-
-// router.patch('/:id', (req, res) => {
-//   User.findByIdAndUpdate(
-//     // the id of the item to find
-//     req.params.id,
-    
-//     // the change to be made. Mongoose will smartly combine your existing 
-//     // document with this change, which allows for partial updates too
-//     req.body,
-    
-//     // an option that asks mongoose to return the updated version 
-//     // of the document instead of the pre-updated one.
-//     {new: true},
-    
-//     // the callback function
-//     (err, todo) => {
-//     // Handle any possible database errors
-//         if (err) return res.status(500).send(err);
-//         return res.send(todo);
-//         }
-//     )
-//   } 
-// );
-
 // @route   PATCH api/users/:id
 // @desc    add user's film_storage
 // @access  Public
-router.patch('/:id', (req, res) => {
+router.post('/:id', (req, res) => {
   User.findByIdAndUpdate(
     req.params.id,
     {$push: {film_storage: req.body}},
-    {safe: true, upsert: true},
-    (err, todo) => {
-        if (err) return res.status(500).send(err);
-        return res.send(todo);
+    {safe: true, upsert: true, new: true},
+    (err, film) => {
+        if (err) return res.status(500).send(err)
+        console.log(film)
+        return res.send({film:film, id:film.film_storage});
         }
     )
   } 
 );
+
+// @route   PATCH api/users/pull/:id
+// @desc    pull user's film_storage
+// @access  Public
+router.patch('/pull/:id', (req, res) => {
+  User.findByIdAndUpdate(
+    req.params.id,
+    {$pull: {film_storage: req.body}},
+    {safe: true, upsert: true, new: true},
+    (err, film) => {
+        if (err) return res.status(500).send(err)
+        console.log(film)
+        return res.send(film);
+        }
+    )
+  } 
+);
+
+
+//add uniq item
+// router.post('/find/:id/:imdbid', (req, res) => {
+//   let route = 200;
+//   User.findOne({_id:req.params.id,"film_storage.imdbID":req.params.imdbid},(err, obj)=>{
+//     let array
+//           if(obj) 
+//           // if(err){
+//           //   res.send(route)
+//           //   res.send(err)
+//           //     User.findByIdAndUpdate(
+//           //       req.params.id,
+//           //       {$push: {film_storage: req.body}},
+//           //       {safe: true, upsert: true, new: true},
+//           //       (err, film) => {
+//           //           if (err) return res.status(500).send(err)
+//           //             console.log(film)
+//           //             return res.send(film);
+//           //           }
+//           //       )
+//           // }
+//             res.send(JSON.stringify(obj))  
+//     } 
+//   )
+// });
+
+  // User.findOne({_id:req.params.id, imdbID:req.params.imdbid}, (err, obj)=>{
+  //   if(err){
+  //     console.log(err)
+  //     res.status(500).send()
+  //   }else{
+  //     if(!obj){
+  //       res.status(404).send();
+  //     }else{ 
+  //       res.status(500).send(obj);
+
+  //     }
+  //   }
+  // }
+  //   )
+  // });
+
+
+
+
+// @route   EDIT api/users/filmdel/:id
+// @desc    EDIT user's attribute
+// @access  Public
+
+// router.put('/edit/:id', (req, res) => {
+//   User.findOne({_id:req.params.id}, (err, obj)=>{
+//     if(err){
+//       console.log(err)
+//       res.status(500).send()
+//     }else{
+//       if(!obj){
+//         res.status(404).send();
+//       }else{
+//         if(req.body.first_name){
+//           obj.first_name = req.body.first_name;
+//         }
+
+//         if(req.body.last_name){
+//           obj.last_name = req.body.last_name
+//         }
+
+//         obj.remove(req.body, (err,res)=>{
+//           if (err){
+//                 console.log(err);
+//                 res.status(500).send();
+//               } else {
+//                 res.json(obj);
+//               }
+//         })
+
+//         // obj.save((err, updtObj)=>{
+//         //   if(err){
+//         //     console.log(err);
+//         //     res.status(500).send();
+//         //   } else {
+//         //     res.send(updtObj);
+//         //   }
+//         // });
+//       }
+//     }
+
+//   })
+// });
+
+// @route   POST api/users/auth/:email/:password
+// @desc    user login 
+// @access  Public
+router.post('/auth/:email/:password', (req, res) => {
+  User.findOne({email:req.params.email,password:req.params.password})
+  .then(user  => {
+    req.session.user = user;
+    return res.json(user)
+  })
+  .catch(err => res.send(true));
+    }
+);
+
+// @route   GET api/users/dashboard
+// @desc    create login session
+// @access  Public
+router.get('/dashboard', (req, res) => {
+  if(!req.session.user){
+     return res.status(401).send(false)
+  }
+  return res.status(200).send(req.session.user)
+});
+
+// @route   GET api/users/signout
+// @desc    user sign out 
+// @access  Public
+router.get('/signout', (req, res) => {
+  req.session.destroy();
+  return res.status(200).send("Farewell");
+});
 
 
 module.exports = router;

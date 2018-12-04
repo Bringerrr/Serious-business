@@ -4,7 +4,6 @@
     box-sizing: border-box;
 }
 
-
 .FilmProfile-Container{
     display: flex;
     width: 100%;
@@ -27,25 +26,25 @@
     padding: 20px;
 }
 
-.TopContainer{
+.FilmProfile_TopContainer{
     width: 100%;
     display: flex;
 }
 
-.TopContainer > .FilmProfile_Info {
+.FilmProfile_TopContainer > .FilmProfile_Info {
     align-self: flex-end;
 }
 
-.TopContainer > .FilmProfile_Info > .FilmProfile_Title{
+.FilmProfile_TopContainer > .FilmProfile_Info > .FilmProfile_Title{
     width: 100%;
     padding-bottom: 20px;
     display: flex;
 }
 
-.TopContainer > .FilmProfile_Picture{
+.FilmProfile_TopContainer > .FilmProfile_Picture{
     min-width: 300px;
     width: 300px;
-    align-self: flex-start;
+    align-self: stretch;
     margin: 0 20px 0 20px;
 }
 
@@ -99,7 +98,7 @@
 }
 
 .FilmProfile_Rating > .Rating_Container > .Item_Title{
-    font-size: 1.4rem;
+    font-size: 1.4em;
     text-align: center;
     color: white;
     padding: 10px;
@@ -107,7 +106,7 @@
 }
 
 .FilmProfile_Rating > .Rating_Container > .Item_Info{
-    font-size: 1.2rem;
+    font-size: 1.2em;
     text-align: center;
 }
 
@@ -119,28 +118,60 @@
     letter-spacing: 0.01em
 }
 
+.FilmProfile_Plot > h4{
+    padding-bottom: 5px;
+    border-bottom: 3px solid #000;
+}
+
+.FilmProfile_Buttons{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: stretch;
+    margin-top: 10px;
+}
+
+.FilmProfile_Buttons  Button{
+    font-size: 1.3em;
+    text-transform: uppercase;
+    background-color: rgb(47, 47, 47);
+    letter-spacing: 0.1em;
+    border:none;
+    width: 100%;
+
+}
+
+.arrow{
+    border: solid white;
+    border-width: 0 .2em .2em 0;
+    display: inline-block;
+    padding: .2em;
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
+
 
 @media only screen and (max-width: 800px) {
 
-    html{
-        font-size: 12px
+    .FilmProfile{
+        font-size: 12px;
     }
 
-    .TopContainer {
+    .FilmProfile_TopContainer {
         flex-direction: column;  
     }
 
-    .TopContainer > .FilmProfile_Info {
+    .FilmProfile_TopContainer > .FilmProfile_Info {
         width: 100%;
     }
     
-    .TopContainer > .FilmProfile_Info > .FilmProfile_Title{
+    .FilmProfile_TopContainer > .FilmProfile_Info > .FilmProfile_Title{
         width: 100%;
         padding-bottom: 20px;
         display: flex;
     }
     
-    .TopContainer > .FilmProfile_Picture{
+    .FilmProfile_TopContainer > .FilmProfile_Picture{
         width: 50%;
         align-self: center;
         display: flex;
@@ -179,4 +210,23 @@
         margin-bottom: 8px;
     }
 
+    .FilmProfile_Buttons{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: stretch;
+    }
+    .FilmProfile_Buttons  Button{
+        width: 48%;
+        margin: 1%;
+    }
+
+  }
+
+
+  @media only screen and (max-width: 480px) {
+    .FilmProfile-Container > .FilmProfile{
+        width: 100%;
+        box-shadow: none;
+    }
   }

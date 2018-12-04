@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
 
 import { getCurrentFilm } from '../actions/imdbActions';
@@ -16,19 +16,21 @@ class FilmProfile extends Component {
     }
 
     getCurrentFilm = id =>{
-        this.props.getCurrentFilm(id)
+        this.props.getCurrentFilm(id);
     }
 
     saveFilm = () => {
         const currentFilm = this.props.imdb.currentFilm;
         const userid = this.props.user.userData._id;
-        const body =  // creat a new obj with keys we need for registration
+        const body =     // creat a new obj with keys we need for fetch request
         (   ({ imdbID, Title, Poster, Genre, Year }) =>
             ({ imdbID, Title, Poster, Genre, Year }) 
         )   (currentFilm);
 
         console.log(body);
+        console.log(userid);
         this.props.saveFilm(userid,body)
+        this.setState({add:'Added'})
     }
 
     addFilmToLibrary = () =>{
@@ -72,11 +74,15 @@ class FilmProfile extends Component {
                         <div className="FilmProfile_Title">
                             <h2>{film.Title}</h2>
                         </div>
-                        <div className="TopContainer">
+                        <div className="FilmProfile_TopContainer">
                             <div className="FilmProfile_Picture">
                                 <img className="Picture_Img" src={film.Poster} alt=""/>
-                                <Button onClick={this.saveFilm} size="lg" color="secondary">Add To Library</Button>
-                                <Button size="lg" color="success">Added</Button>
+                                <div className="FilmProfile_Buttons">
+                                    <Button onClick={this.saveFilm} size="lg" color="secondary">Add</Button>
+                                    <Button size="lg" color="success"> Added</Button>
+                                    <Button size="lg" color="info"><i class="arrow"></i>to Search</Button>
+                                    <Button size="lg" color="info"> <i class="arrow"></i>to Library</Button>
+                                </div>
                             </div>
                             <div className="FilmProfile_Info">
                                 {pureItemsCode}
@@ -87,6 +93,7 @@ class FilmProfile extends Component {
                         </div>
 
                         <div className="FilmProfile_Plot">
+                            <h4>Plot</h4>
                             {film.Plot}
                         </div>    
                     </div>

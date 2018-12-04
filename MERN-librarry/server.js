@@ -2,8 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
+const session = require('express-session');
 
-const items = require('./routes/api/items');
+const activities = require('./routes/api/activities');
 const users = require('./routes/api/users');
 
 const app = express();
@@ -20,8 +21,11 @@ mongoose
   .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
 
+// Creating a login session 
+app.use(session({secret:"idontbeliaveinlocalstoresoiusesession22412zxXZx",resave:false, saveUninitialized:true}))
+
 // Use Routes
-app.use('/api/items', items);
+app.use('/api/activities', activities);
 app.use('/api/users', users);
 
 // Serve static assets if in production

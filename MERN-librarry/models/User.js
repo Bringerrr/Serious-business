@@ -26,7 +26,6 @@ const UserSchema = new Schema({
       imdbID: {
         type:String,
         required: false,
-        unique: true,
       },
       Year: {
         type:String,

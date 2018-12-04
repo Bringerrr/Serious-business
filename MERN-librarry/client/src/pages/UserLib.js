@@ -1,7 +1,6 @@
 import React from 'react';
 
-import ShoppingList from '../components/ShoppingList';
-import ItemModal from '../components/ItemModal';
+import FilmList from '../components/FilmList';
 
 import {Container} from 'reactstrap'
 
@@ -11,8 +10,7 @@ class UserLib extends React.Component {
   
       return (
         <Container>
-            <ItemModal />
-            <ShoppingList />
+            <FilmList />
         </Container>
       );
     }

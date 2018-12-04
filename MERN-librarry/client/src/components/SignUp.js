@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Button, Form, FormFeedback, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormFeedback, FormGroup, Label, Input} from 'reactstrap';
 import {connect} from 'react-redux';
 
-import {userReg} from '../actions/userActions';
+import {userReg, userDashboard} from '../actions/userActions';
 
 class SignUp extends Component {
     state = {
@@ -29,16 +29,10 @@ class SignUp extends Component {
     onSubmit = e => {
         e.preventDefault();
         const {email,password} = this.state
-
         this.setState({loading:true})
-        this.userReg();
-
-        setTimeout( () => { 
+        this.userReg();                 // Registraion
+        setTimeout( () => {             // Waiting for reqest and data from API
             this.emailValidation(); 
-            if(!this.props.user.userInfo.errors){   // if threre are no error during registrartion
-                                                   // save our data in LocalStorage
-            localStorage.setItem('MERN Library',JSON.stringify({email:email,password:password}))
-             }
             this.setState({loading:false})
         }, 1500 );
     };
@@ -48,9 +42,12 @@ class SignUp extends Component {
       };
 
     emailValidation = () =>{
-        this.props.user.userInfo.errors     //if it exists it means 
-        ?this.setState({emailValid:false})  //that fetch req had an error
-        :this.setState({emailValid:true})
+        if(this.props.user.userInfo.errors)   // if error exists it means 
+            this.setState({emailValid:false}) // that fetch req return an error
+        
+        else {this.setState({emailValid:true})
+            // this.props.userDashboard();          //creat a session
+        }
     }
 
     render() {
@@ -83,7 +80,6 @@ class SignUp extends Component {
                 }
                 <br/>
                 <br/>
-
             </Form>
         );
     }
@@ -91,12 +87,11 @@ class SignUp extends Component {
 
 
 const mapStateToProps = state => ({
-    item: state.item,
     imdb: state.imdb,
     user: state.user
   });
   
   export default connect(
     mapStateToProps,
-    { userReg }
+    { userReg,userDashboard }
   )(SignUp);
