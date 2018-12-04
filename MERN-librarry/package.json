@@ -14,11 +14,13 @@
   "author": "Kruchkov Evgeniy",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
     "concurrently": "^3.6.0",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "imdb-api": "^4.0.2",
+    "jsonwebtoken": "^8.4.0",
     "mongoose": "^5.1.6",
     "mongoose-unique-validator": "^2.0.2"
   },

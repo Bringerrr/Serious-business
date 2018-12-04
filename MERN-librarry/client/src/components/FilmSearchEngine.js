@@ -231,6 +231,7 @@ class FilmSearchEngine extends Component {
   }
 
   render() {
+    console.log(this.props.imdb)
     return (
       <div>
         <Form onSubmit={this.onSubmit}>
@@ -296,7 +297,7 @@ class FilmSearchEngine extends Component {
           <ModalBody>
               {(this.state.modalImg !== "")
               ?<img style={{float:'left'}} src={this.state.modalImg} alt=""/>
-              :<img src="https://cdn.browshot.com/static/images/not-found.png" alt=""/>}
+              :<img src={"https://cdn.browshot.com/static/images/not-found.png"} alt=""/>}
 
               <span style={{float:'left'}}>{this.props.imdb.currentFilm.Plot}</span>
               <NavLink to={"/films/"+this.props.imdb.currentFilm.imdbID}>

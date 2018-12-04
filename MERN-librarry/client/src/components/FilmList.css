@@ -3,6 +3,8 @@
    width: 100%;
    justify-content: space-around;
    flex-wrap: wrap;
+   transform: translateZ(0);
+   animation: fade 1s linear;
 }
 
 .FilmCard_Item{
@@ -83,6 +85,18 @@ Button.go{
     margin: 0;
     font-size: 0;
 }
+
+@keyframes fade {
+    from, 
+    to {
+    opacity: 0.2;
+    transform: translateX(15%);
+    } 
+    50% {    opacity: 0.6;
+        transform: translateX(8%);}
+    100% {    opacity: 1;
+        transform: translateX(0%);}
+    }
 
 @media only screen and (max-width: 1280px) {
     .FilmCard_Item{

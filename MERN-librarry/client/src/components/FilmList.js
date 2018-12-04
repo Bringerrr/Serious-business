@@ -7,7 +7,7 @@ import { getUserData, delFilm } from '../actions/userActions';
 
 import './FilmList.css'
 
-class FilmList extends Component {
+class FilmList extends React.PureComponent {
 
   componentWillMount(){
       const { userData } = this.props.user

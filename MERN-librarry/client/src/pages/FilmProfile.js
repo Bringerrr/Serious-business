@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'reactstrap';
 
 import { getCurrentFilm } from '../actions/imdbActions';
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { saveFilm } from '../actions/userActions';
 
 import './FilmProfile.css'
 
-class FilmProfile extends Component {
+class FilmProfile extends React.PureComponent {
+
+    state = {
+        review: "",
+
+    }
 
     componentWillMount(){
         const {match} = this.props
@@ -17,6 +22,15 @@ class FilmProfile extends Component {
 
     getCurrentFilm = id =>{
         this.props.getCurrentFilm(id);
+    }
+
+    onChange = e => {
+        this.setState({ [e.target.name]: e.target.value });
+    };
+
+    postReview = e =>{
+        e.preventDefault();
+
     }
 
     saveFilm = () => {
@@ -35,6 +49,7 @@ class FilmProfile extends Component {
 
     addFilmToLibrary = () =>{
         console.log(this.props.user.userData)
+
     }
 
     render() {
@@ -95,7 +110,20 @@ class FilmProfile extends Component {
                         <div className="FilmProfile_Plot">
                             <h4>Plot</h4>
                             {film.Plot}
-                        </div>    
+                        </div>
+                        {this.props.user.authorized === true
+                        ?<div className="FilmProfile_Review">  
+                            <Form onSubmit={this.postReview} className="Review_Form">
+                                <FormGroup>
+                                    <Label for="exampleText">Leave review</Label>
+                                    <Input onChange={this.onChange} placeholder="Write here ..." 
+                                    rows="10" type="textarea" name="review" id="exampleText" />
+                                </FormGroup>
+                                <Button>Post</Button>
+                            </Form>
+                        </div> 
+                        :null}
+
                     </div>
                 </div>}
             </div>

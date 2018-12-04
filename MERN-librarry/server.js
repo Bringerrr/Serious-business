@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
 const session = require('express-session');
+const jwt = require('jsonwebtoken');
 
 const activities = require('./routes/api/activities');
 const users = require('./routes/api/users');

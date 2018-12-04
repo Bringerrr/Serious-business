@@ -42,7 +42,7 @@ router.delete('/:id', (req, res) => {
 // @route   PATCH api/users/:id
 // @desc    add user's film_storage
 // @access  Public
-router.post('/:id', (req, res) => {
+router.patch('/:id', (req, res) => {
   User.findByIdAndUpdate(
     req.params.id,
     {$push: {film_storage: req.body}},

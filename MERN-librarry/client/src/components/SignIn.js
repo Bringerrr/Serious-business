@@ -29,9 +29,13 @@ class SignIn extends Component {
         e.preventDefault();
         // this.props.userDashboard()
         const {email,password} = this.state
-        this.auth(email,password)
-        this.setState({loading:false})
-        this.props.toggle();
+        this.auth(email,password);
+        this.props.userDashboard();
+
+        setTimeout(() => {
+            this.setState({loading:false})
+            this.props.toggle();
+        }, 2000);
 
     };
 

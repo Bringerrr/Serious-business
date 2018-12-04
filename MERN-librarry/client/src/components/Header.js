@@ -10,7 +10,7 @@ import DropdownUser from './DropdownUser'
 
 import { getUserData, userSignOut,userDashboard } from '../actions/userActions'
 
-class Header extends React.Component {
+class Header extends React.PureComponent {
 
   state = {
     email:"",
@@ -35,7 +35,7 @@ class Header extends React.Component {
             <NavLink to="/userlib" className="MainMenu_Item">User Library</NavLink>
           </div>
           <div className="MainMenu_Item_Buttons">
-            {( this.props.user.userData.email || this.props.user.authorized === true) 
+            {( this.props.user.authorized === true || this.props.user.userData.email) 
               ?<div>                                                                  
                 {this.props.user.userData.email}
                 <SignOut className="" toggle={this.toggle}/>
