@@ -1,11 +1,5 @@
 import React, {Component} from 'react';
-import { 
-    Form, 
-    FormGroup, 
-    Label,
-    Input,
-    Button 
-} from 'reactstrap';
+import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
 import {connect} from 'react-redux';
 
 import {getUserData, userDashboard} from '../actions/userActions';
@@ -17,26 +11,23 @@ class SignIn extends Component {
         password: ''
     };
 
-    auth = (email, password) =>{
-        this.props.getUserData(email,password);
-    } 
+    auth = (email, password) => {
+        this.props.getUserData(email, password);
+    }
 
     onChange = e => {
-        this.setState({ [e.target.name]: e.target.value });
+        this.setState({
+            [e.target.name]: e.target.value
+        });
     };
 
     onSubmit = e => {
         e.preventDefault();
-        // this.props.userDashboard()
-        const {email,password} = this.state
-        this.auth(email,password);
+        // debugger; this.props.userDashboard()
+        const {email, password} = this.state
+        this.auth(email, password);
         this.props.userDashboard();
-
-        setTimeout(() => {
-            this.setState({loading:false})
-            this.props.toggle();
-        }, 2000);
-
+        this.props.toggle();
     };
 
     render() {
@@ -44,11 +35,21 @@ class SignIn extends Component {
             <Form inline onSubmit={this.onSubmit}>
                 <FormGroup>
                     <Label for="exampleEmail" hidden>Email</Label>
-                    <Input onChange={this.onChange} type="email" name="email" id="exampleEmail" placeholder="Email" />
+                    <Input
+                        onChange={this.onChange}
+                        type="email"
+                        name="email"
+                        id="exampleEmail"
+                        placeholder="Email"/>
                 </FormGroup>
                 <FormGroup>
                     <Label for="examplePassword" hidden>Password</Label>
-                    <Input onChange={this.onChange} type="password" name="password" id="examplePassword" placeholder="Password" />
+                    <Input
+                        onChange={this.onChange}
+                        type="password"
+                        name="password"
+                        id="examplePassword"
+                        placeholder="Password"/>
                 </FormGroup>
                 <Button>Submit</Button>
             </Form>
@@ -56,13 +57,6 @@ class SignIn extends Component {
     }
 }
 
+const mapStateToProps = state => ({imdb: state.imdb, user: state.user});
 
-const mapStateToProps = state => ({
-    imdb: state.imdb,
-    user: state.user
-  });
-  
-  export default connect(
-    mapStateToProps,
-    { getUserData, userDashboard }
-  )(SignIn);
+export default connect(mapStateToProps, {getUserData, userDashboard})(SignIn);

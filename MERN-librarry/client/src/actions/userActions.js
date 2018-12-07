@@ -3,20 +3,27 @@ import {
   USER_SAVE_FILM,
   USER_DEL_FILM,
   USER_AUTH,
+  USER_AUTH_ERR,
   USER_REG,
   USER_SIGN_OUT, 
   USER_DASHBOARD,
   ITEMS_LOADING 
 } from './types';
 
-// sign in a user by email and password then get user's data
+// sign in a user by email and password then get user's
 export const getUserData = (email,password) => dispatch => {
+  dispatch(userDashboard());
   axios.post(`/api/users/auth/${email}/${password}`).then(res =>
     dispatch({
       type: USER_AUTH,
       payload: res.data
     })
-  );
+  ).catch (function(err) {
+    dispatch ({
+      type:USER_AUTH_ERR,
+      payload:err
+    });
+  });;
 };
 
 export const saveFilm = (userid,body) => dispatch => {
@@ -58,23 +65,24 @@ export const userReg = userInfo => dispatch => {
   );
 };
 
-// sign out
-export const userSignOut = () => dispatch => {
-  dispatch(setItemsLoading());
-  axios.get('/api/users/signout').then(res =>
-    dispatch({
-      type: USER_SIGN_OUT,
-      payload: res.data
-    })
-  );
-};
-
 // check login session
 export const userDashboard = () => dispatch => {
   dispatch(setItemsLoading());
   axios.get('/api/users/dashboard').then(res =>
     dispatch({
       type: USER_DASHBOARD,
+      payload: res.data
+    })
+  );
+};
+
+
+// sign out
+export const userSignOut = () => dispatch => {
+  dispatch(setItemsLoading());
+  axios.get('/api/users/signout').then(res =>
+    dispatch({
+      type: USER_SIGN_OUT,
       payload: res.data
     })
   );

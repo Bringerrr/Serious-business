@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 
 const activities = require('./routes/api/activities');
 const users = require('./routes/api/users');
+const reviews = require('./routes/api/reviews');
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use(session({secret:"idontbeliaveinlocalstoresoiusesession22412zxXZx",resave
 // Use Routes
 app.use('/api/activities', activities);
 app.use('/api/users', users);
+app.use('/api/reviews', reviews);
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {

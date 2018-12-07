@@ -73,95 +73,6 @@ router.patch('/pull/:id', (req, res) => {
   } 
 );
 
-
-//add uniq item
-// router.post('/find/:id/:imdbid', (req, res) => {
-//   let route = 200;
-//   User.findOne({_id:req.params.id,"film_storage.imdbID":req.params.imdbid},(err, obj)=>{
-//     let array
-//           if(obj) 
-//           // if(err){
-//           //   res.send(route)
-//           //   res.send(err)
-//           //     User.findByIdAndUpdate(
-//           //       req.params.id,
-//           //       {$push: {film_storage: req.body}},
-//           //       {safe: true, upsert: true, new: true},
-//           //       (err, film) => {
-//           //           if (err) return res.status(500).send(err)
-//           //             console.log(film)
-//           //             return res.send(film);
-//           //           }
-//           //       )
-//           // }
-//             res.send(JSON.stringify(obj))  
-//     } 
-//   )
-// });
-
-  // User.findOne({_id:req.params.id, imdbID:req.params.imdbid}, (err, obj)=>{
-  //   if(err){
-  //     console.log(err)
-  //     res.status(500).send()
-  //   }else{
-  //     if(!obj){
-  //       res.status(404).send();
-  //     }else{ 
-  //       res.status(500).send(obj);
-
-  //     }
-  //   }
-  // }
-  //   )
-  // });
-
-
-
-
-// @route   EDIT api/users/filmdel/:id
-// @desc    EDIT user's attribute
-// @access  Public
-
-// router.put('/edit/:id', (req, res) => {
-//   User.findOne({_id:req.params.id}, (err, obj)=>{
-//     if(err){
-//       console.log(err)
-//       res.status(500).send()
-//     }else{
-//       if(!obj){
-//         res.status(404).send();
-//       }else{
-//         if(req.body.first_name){
-//           obj.first_name = req.body.first_name;
-//         }
-
-//         if(req.body.last_name){
-//           obj.last_name = req.body.last_name
-//         }
-
-//         obj.remove(req.body, (err,res)=>{
-//           if (err){
-//                 console.log(err);
-//                 res.status(500).send();
-//               } else {
-//                 res.json(obj);
-//               }
-//         })
-
-//         // obj.save((err, updtObj)=>{
-//         //   if(err){
-//         //     console.log(err);
-//         //     res.status(500).send();
-//         //   } else {
-//         //     res.send(updtObj);
-//         //   }
-//         // });
-//       }
-//     }
-
-//   })
-// });
-
 // @route   POST api/users/auth/:email/:password
 // @desc    user login 
 // @access  Public
@@ -192,6 +103,5 @@ router.get('/signout', (req, res) => {
   req.session.destroy();
   return res.status(200).send("Farewell");
 });
-
 
 module.exports = router;

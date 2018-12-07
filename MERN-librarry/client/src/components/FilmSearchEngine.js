@@ -64,13 +64,11 @@ class FilmSearchEngine extends Component {
   onCLickPagination = (event) => {
     event.preventDefault();
 
-
     var pressedPage = parseInt(event.currentTarget.innerHTML,10)
     this.setState({currentPage:pressedPage})
 
     this.props.getFilm(
         this.state.name, 
-        this.state.type,
         this.state.year,
         pressedPage
     );
@@ -88,9 +86,7 @@ class FilmSearchEngine extends Component {
     e.preventDefault();
 
     this.setState({modalImg:e.currentTarget.getAttribute("imgsrc")})
-
     this.getCurrentFilm(e.currentTarget.id);
-
     this.toggle();
   }
 
@@ -180,7 +176,7 @@ class FilmSearchEngine extends Component {
         break;
       
       default:
-        null;
+        break;
     }
 
     const onCLickPaginationBack = e => {
@@ -233,7 +229,7 @@ class FilmSearchEngine extends Component {
   }
 
   render() {
-    console.log(this.props)
+    console.log(this.props.imdb)
     return (
       <div>
         <Form onSubmit={this.onSubmit}>

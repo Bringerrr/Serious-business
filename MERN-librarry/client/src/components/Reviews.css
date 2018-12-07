@@ -1,0 +1,136 @@
+.UserReview-Container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+/* for main page */
+
+.MP-UserReview-Container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    font-size: 1.6em;
+}
+
+.MP-UserReview >  *{
+    color: white
+}
+
+.MP-UserReview{
+    width: 80%;
+    max-width: 1000px;
+    background-color:rgb(47, 47, 47);
+    margin-bottom: 50px;
+    display: flex;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px 10px black
+}
+.MP-UserReview > a > .MP-UserReview_MP-Poster{
+    width: 100px;
+}
+
+.MP-UserReview > a > .MP-UserReview_MP-Poster  > img{
+    width: 100%;
+}
+
+.MP-UserReview > .MP-UserReview-Small-Block {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 35%;
+    margin: 16px;
+}
+
+.MP-UserReview > .MP-UserReview-Small-Block > .MP-UserReview_MP-Title{
+    font-size: 1.4em
+}
+
+.MP-UserReview > .MP-UserReview-Big-Block  {
+    width: 50%;
+    border: 2px solid white;
+    padding: 8px;
+    border-radius: 0 20px 20px 20px
+}
+.MP-UserReview > .MP-UserReview-Big-Block > .MP-UserReview_Text{
+    word-wrap: break-word;
+    align-self: stretch;
+}
+.MP-UserReview > .MP-UserReview-Big-Block > .MP-UserReview_Date{
+    font-size: 0.8em
+}
+
+.MP-UserReview_Button{
+    display: inline-block;
+}
+
+@media only screen and (max-width: 767px) {
+    .MP-UserReview{
+        flex-direction: column;
+    
+    }
+    .MP-UserReview > .MP-UserReview-Big-Block  {
+     
+        width: 100%;
+    }
+
+    .MP-UserReview > .MP-UserReview-Small-Block {
+        width: 50%;
+    }
+
+    .MP-UserReview >a{
+        width: 45%;
+    }
+}
+
+
+/* for individual page */
+
+.IND-UserReview-Container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    font-size: 1.6em;
+}
+
+.IND-UserReview >  *{
+    color: white
+}
+
+.IND-UserReview{
+    width: 80%;
+    max-width: 1000px;
+    background-color:rgb(47, 47, 47);
+    margin-bottom: 50px;
+    display: flex;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px 10px black;
+    flex-direction: column;
+}
+
+.IND-UserReview > .IND-UserReview-Small-Block {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 35%;
+    margin: 16px;
+}
+
+.IND-UserReview > .IND-UserReview-Big-Block  {
+    width: 100%;
+    border: 2px solid white;
+    padding: 8px;
+    border-radius: 0 20px 20px 20px
+}
+.IND-UserReview > .IND-UserReview-Big-Block > .IND-UserReview_Text{
+    word-wrap: break-word;
+    align-self: stretch;
+}
+.IND-UserReview > .IND-UserReview-Big-Block > .IND-UserReview_Date{
+    font-size: 0.8em
+}

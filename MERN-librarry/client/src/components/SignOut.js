@@ -1,16 +1,14 @@
 import React, {Component} from 'react';
-import { 
-    Button 
-} from 'reactstrap';
+import {Button} from 'reactstrap';
 
-import { connect } from 'react-redux';
-import { userSignOut } from '../actions/userActions';
+import {connect} from 'react-redux';
+import {userSignOut} from '../actions/userActions';
 
 class SignOut extends Component {
 
-signOut = () =>{
-    this.props.userSignOut();
-}
+    signOut = () => {
+        this.props.userSignOut();
+    }
     render() {
         return (
             <Button onClick={this.signOut}>
@@ -20,12 +18,6 @@ signOut = () =>{
     }
 }
 
+const mapStateToProps = state => ({user: state.user});
 
-const mapStateToProps = state => ({
-    user: state.user
-  });
-  
-  export default connect(
-    mapStateToProps,
-    { userSignOut }
-  )(SignOut);
+export default connect(mapStateToProps, {userSignOut})(SignOut);

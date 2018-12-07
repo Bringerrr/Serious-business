@@ -1,6 +1,7 @@
 .Header{
     display: flex;
     justify-content: space-between;
+    font-family: 'Cinzel', serif; 
     font-size: 1.3rem;
     width: 100%;
     position: fixed;
@@ -22,23 +23,96 @@
     display: flex;
 }
 
-.PageLink {
-    color: black;
-    margin-right: 20px;
+.Gap{
+    height: 90px;
 }
-
-.ActivePageLink {
-    font-weight: bold;
-}
-
-.opacity{
-    opacity: 0;
-    position: relative;
-    z-index: -999;
-}
-
 
 .Header > .MainMenu_Item{
     font-family: "Cinzel";
     font-weight: 300;
 }
+
+/* Burger styles---------------------------> */
+
+.Header-Burger-Container{
+    position: fixed;
+    width: 100%;
+    background-color:rgba(34, 33, 33, 0.922);
+    z-index: 2;
+    transform: translateY(0);
+    display: flex;
+    top: 0px;
+}
+
+.Burger-Icon{
+    font-size: 0;
+    position: relative;
+    width: 60px;
+    height: 50px;
+    background-color: black;
+    margin: 20px 0 10px 20px;
+}
+.Burger-Icon_Inner{
+    width: 100%;
+    height: 10px;
+}
+
+.Burger-Icon_Inner:nth-of-type(2n){
+    background-color: white;
+}
+
+.Header-Burger-List{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;
+    padding: 5px;
+    border-left: 2px solid red;
+    width: 199%;
+}
+
+.Header-Burger-List > *{
+    font-size: 1.1em;
+    display: flex;
+    color: aliceblue;
+    flex-direction: column;
+    margin: 5px;
+}
+
+.Header-Burger-List > a{
+    padding-bottom: 14px;
+    text-align: center;
+    margin: 0 22% 18px;
+    border-bottom: 2px solid white;
+}
+
+.Header-Burger-List > a:hover{
+    border-color: red;
+    color:red;
+    text-decoration: none;
+}
+
+.list-enter {
+    display: flex;
+    opacity: 0.01;
+    transform: translateX(100%);
+  }
+  .list-enter-active {
+    opacity: 1;
+    transform: translateX(0%);
+    transition: all 300ms ease-out;
+  }
+  .list-exit {
+    opacity: 1;
+    transform: translateX(0%) ;
+  }
+  .list-exit-active {
+    opacity: 0.01;
+    transform: translateX(100%);
+    transition: all 300ms ease-out;
+  }
+
+  .list-exit-done{
+    display: none;
+      opacity: 0.01;
+  }
+  

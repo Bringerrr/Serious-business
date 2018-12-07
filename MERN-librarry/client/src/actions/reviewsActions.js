@@ -2,22 +2,14 @@ import axios from 'axios';
 import { 
   POST_REVIEW,
   GET_REVIEW,
+  REVIEWS_LOADING
 } from './types';
 
-// post users' review
-// export const postReview = body => dispatch => {
-//   axios.post(`/api/activities`).then(res =>
-//     dispatch({
-//       type: POST_REVIEW,
-//       payload: res.data
-//     })
-//   );
-// };
-
 export const postReview = body => dispatch => {
+    dispatch(setReviewLoading());
     axios({
       method: 'post',
-      url: `/api/activities`,
+      url: `/api/reviews`,
       data: body
     }).then(res =>
       dispatch({
@@ -29,11 +21,17 @@ export const postReview = body => dispatch => {
 
 // get all users' review
 export const getReview = (user,post) => dispatch => {
-    axios.get(`/api/activities`).then(res =>
+    axios.get(`/api/reviews`).then(res =>
       dispatch({
         type: GET_REVIEW,
         payload: res.data
       })
     );
 };
+
+export const setReviewLoading = () => {
+    return {
+      type: REVIEWS_LOADING
+    };
+  };
   

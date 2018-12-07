@@ -57,4 +57,4 @@ const UserSchema = new Schema({
 
 UserSchema.plugin(uniqueValidator);
 
-module.exports = Item = mongoose.model('user', UserSchema);
+module.exports = User = mongoose.model('user', UserSchema);

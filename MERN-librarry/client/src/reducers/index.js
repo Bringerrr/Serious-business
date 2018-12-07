@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
-import activityReducer from './activityReducer';
+import itemReducer from './itemReducer';
 import imdbReducer from './imdbReducer';
 import userReducer from './userReducer';
+import reviewReducer from './reviewReducer';
 
 export default combineReducers({
   imdb: imdbReducer,
-  activity: activityReducer,
-  user: userReducer
+  item: itemReducer,
+  user: userReducer,
+  review: reviewReducer,
 });

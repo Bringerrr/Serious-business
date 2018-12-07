@@ -1,9 +1,7 @@
 import React from 'react';
-import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { ButtonDropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
 
 import { connect } from 'react-redux';
-import SignInContainer from './SignInContainer';
-import SignOut from './SignOut';
 
 export class DropdownUser extends React.Component {
   constructor(props) {

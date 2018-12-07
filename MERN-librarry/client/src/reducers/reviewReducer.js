@@ -1,6 +1,7 @@
 import {
     POST_REVIEW,
     GET_REVIEW,
+    REVIEWS_LOADING
   } from '../actions/types';
   
   const initialState = {
@@ -20,6 +21,11 @@ import {
         return {
             ...state,
             loading: false
+        };
+        case REVIEWS_LOADING:
+        return {
+            ...state,
+            loading: true
         };
       default:
         return state;
