@@ -32,7 +32,8 @@ class FilmProfile extends React.PureComponent {
                 {( this.props.user.authorized === true || this.props.user.userData.email) 
                 ?<WriteReviewForm 
                     id={this.props.match.params._id}
-                    currentFilm={this.props.imdb.currentFilm}  
+                    currentFilm={this.props.imdb.currentFilm}
+                    getReview = {this.props.getReview()}  
                 />
                 :null}
                 <Reviews 

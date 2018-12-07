@@ -25,7 +25,9 @@ class WriteReviewForm extends React.Component {
     postReview = e => {
         e.preventDefault();
 
-        this.props.postReview({
+        this
+            .props
+            .postReview({
                 imdbID: this.props.id,
                 review: this.state.review,
                 user: this.props.user.userData.email,
@@ -34,6 +36,7 @@ class WriteReviewForm extends React.Component {
                 poster: this.props.currentFilm.Poster
             })
         this.toggle();
+        this.props.getReview
     }
 
     writeReview = () => {
@@ -44,7 +47,7 @@ class WriteReviewForm extends React.Component {
 
     render() {
         return (
-            <div className="Review-Form-Container" >
+            <div className="Review-Form-Container">
                 <Form onSubmit={this.postReview} className="Review-Form">
                     <FormGroup>
                         <Label for="exampleText">Leave review</Label>

@@ -7,7 +7,7 @@ import {getUserData, delFilm} from '../actions/userActions';
 
 import './FilmList.css'
 
-class FilmList extends React.PureComponent {
+class FilmList extends React.Component {
 
     componentWillMount() {
         const {userData} = this.props.user
@@ -16,14 +16,19 @@ class FilmList extends React.PureComponent {
             : this.props.getUserData(userData.email, userData.password)
     }
 
-    delFilm = e => {
+    delFilm = (e) => {
         e.preventDefault();
+        const {userData} = this.props.user
+        
+        this.props.user.userData.id
         console.log(e.currentTarget.id)
+        this.props.delFilm(this.props.user.userData._id, {imdbID:e.currentTarget.id})
+        this.props.getUserData(userData.email, userData.password)
     }
 
     render() {
         const {userData} = this.props.user
-
+        console.log(this.props.user.userData.film_storage)
         return (
             <Container>
                 <div className="FilmCard">

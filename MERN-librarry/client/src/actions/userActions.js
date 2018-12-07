@@ -42,8 +42,8 @@ export const saveFilm = (userid,body) => dispatch => {
 
 export const delFilm = (userid,body) => dispatch => {
   axios({
-    method: 'delete',
-    url: `/api/users/filmdel/${userid}`,
+    method: 'patch',
+    url: `/api/users/pull/${userid}`,
     data: body
   }).then(res =>
     dispatch({
