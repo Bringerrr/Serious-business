@@ -7,14 +7,17 @@ import './FilmInfo.css'
 
 class FilmInfo extends React.Component {
 
+    state = {
+        saved:false
+    }
+
     saveFilm = () => {
         const {currentFilm} = this.props;
         const userid = this.props.user.userData._id;
         const body = // creat a new obj with keys we need for fetch request
         (({imdbID, Title, Poster, Genre, Year}) => ({imdbID, Title, Poster, Genre, Year}))(currentFilm);
-
         this.props.saveFilm(userid, body)
-        this.setState({add: 'Added'})
+        this.setState({saved: true})
     }
 
     addFilmToLibrary = () => {
@@ -78,9 +81,12 @@ class FilmInfo extends React.Component {
                             <div className="FilmProfile_Picture">
                                 <img className="Picture_Img" src={film.Poster} alt=""/>
                                 <div className="FilmProfile_Buttons">
-                                    <Button onClick={this.saveFilm} size="lg" color="secondary">Add</Button>
-                                    <Button size="lg" color="success">
-                                        Added</Button>
+                                    {   this.props.user.authorized === false
+                                        ?null
+                                        :this.props.user.userData.film_storage.find( (e) => e.imdbID === this.props.currentFilm.imdbID ) === undefined
+                                            ?<Button onClick={this.saveFilm} size="lg" color="secondary">Add</Button>
+                                            :<Button size="lg" color="success">Added</Button>
+                                    }
                                     <Button size="lg" color="info">
                                         <i className="arrow"></i>to Search</Button>
                                     <Button size="lg" color="info">

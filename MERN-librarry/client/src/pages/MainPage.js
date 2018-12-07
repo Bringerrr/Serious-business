@@ -14,7 +14,7 @@ class MainPage extends React.Component {
     render() {
         return (
             <Container>
-              <h3>Recent reviews</h3>
+              <h3 className="MainPage_Title" >Recent reviews</h3>
                 <Reviews 
                   filter={"main"} // values: main, individ
                 />

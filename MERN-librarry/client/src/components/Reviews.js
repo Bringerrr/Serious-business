@@ -87,7 +87,7 @@ class Reviews extends React.PureComponent {
 
                                     </div>
                                     <div className="MP-UserReview_Date">
-                                        <span>{moment(review.date).local(true).format('LLL')}</span>
+                                        <span>{'at : '}{moment(review.date).local(true).format('LLL')}</span>
                                     </div>
 
                                 </div>

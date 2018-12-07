@@ -25,9 +25,7 @@ class WriteReviewForm extends React.Component {
     postReview = e => {
         e.preventDefault();
 
-        this
-            .props
-            .postReview({
+        this.props.postReview({
                 imdbID: this.props.id,
                 review: this.state.review,
                 user: this.props.user.userData.email,
@@ -35,8 +33,9 @@ class WriteReviewForm extends React.Component {
                 year: this.props.currentFilm.Year,
                 poster: this.props.currentFilm.Poster
             })
+        this.setState({review:""})
         this.toggle();
-        this.props.getReview
+        this.props.getReview // static prop function 
     }
 
     writeReview = () => {
@@ -53,7 +52,7 @@ class WriteReviewForm extends React.Component {
                         <Label for="exampleText">Leave review</Label>
                         <Input
                             onChange={this.onChange}
-                            placeholder="Write here ..."
+                            placeholder={this.state.review}
                             rows="10"
                             type="textarea"
                             name="review"

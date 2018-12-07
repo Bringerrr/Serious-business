@@ -11,24 +11,19 @@ class FilmList extends React.Component {
 
     componentWillMount() {
         const {userData} = this.props.user
-        userData.length === 0
-            ? null
-            : this.props.getUserData(userData.email, userData.password)
+        getUserData(userData.email, userData.password)
     }
 
     delFilm = (e) => {
         e.preventDefault();
         const {userData} = this.props.user
         
-        this.props.user.userData.id
-        console.log(e.currentTarget.id)
         this.props.delFilm(this.props.user.userData._id, {imdbID:e.currentTarget.id})
         this.props.getUserData(userData.email, userData.password)
     }
 
     render() {
         const {userData} = this.props.user
-        console.log(this.props.user.userData.film_storage)
         return (
             <Container>
                 <div className="FilmCard">

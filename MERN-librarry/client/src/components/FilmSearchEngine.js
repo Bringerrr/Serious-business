@@ -229,7 +229,6 @@ class FilmSearchEngine extends Component {
   }
 
   render() {
-    console.log(this.props.imdb)
     return (
       <div>
         <Form onSubmit={this.onSubmit}>
