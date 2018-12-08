@@ -27,7 +27,6 @@ class SignIn extends Component {
         const {email, password} = this.state
         this.auth(email, password);
         this.props.userDashboard();
-        this.props.toggle();
     };
 
     render() {

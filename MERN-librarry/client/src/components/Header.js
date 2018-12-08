@@ -35,9 +35,9 @@ class Header extends React.PureComponent {
     }
 
     render() {
+        console.log(this.props.user.email)
         return (
             <div>
-
                 <MediaQuery query="(max-width: 768px)">
 
                     <div className="Burger-Icon" onClick={this.toggle}>
@@ -68,9 +68,9 @@ class Header extends React.PureComponent {
                                     className="Header-Burger-List_Item"
                                     to="/userlib"
                                     className="MainMenu_Item">User Library</NavLink>
-                                {(this.props.user.authorized === true || this.props.user.userData.email)
+                                {(this.props.user.email !== null)
                                     ? <div>
-                                            {this.props.user.userData.email}
+                                            {this.props.user.email}
                                             <SignOut className="" toggle={this.toggle}/>
                                         </div>
                                     : <SignInContainer/>}

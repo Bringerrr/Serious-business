@@ -14,7 +14,8 @@ import {
     userData:[],
     saveFilm:[],
     authorized:false,
-    loading: false
+    loading: false,
+    email:null
   };
   
   export default function(state = initialState, action) {
@@ -39,6 +40,7 @@ import {
             ...state,
             userData: [],
             authorized:false,
+            email:false,
             loading: false
         };
         case USER_DEL_FILM:
@@ -56,6 +58,7 @@ import {
         return {
             ...state,
             userData: action.payload,
+            email: action.payload.email,
             loading: false
         };
         case USER_REG:

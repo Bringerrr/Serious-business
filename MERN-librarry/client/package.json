@@ -36,6 +36,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "srart wp":"webpack-dev-server --mode development --open --hot",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

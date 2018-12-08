@@ -81,7 +81,7 @@ class FilmInfo extends React.Component {
                             <div className="FilmProfile_Picture">
                                 <img className="Picture_Img" src={film.Poster} alt=""/>
                                 <div className="FilmProfile_Buttons">
-                                    {   this.props.user.authorized === false
+                                    {   this.props.user.email === null
                                         ?null
                                         :this.props.user.userData.film_storage.find( (e) => e.imdbID === this.props.currentFilm.imdbID ) === undefined
                                             ?<Button onClick={this.saveFilm} size="lg" color="secondary">Add</Button>
